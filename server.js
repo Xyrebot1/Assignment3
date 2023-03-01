@@ -23,7 +23,7 @@ connection.connect((err) => {
 });
 
 app.get('/init', (req, res) => {
-    connection.query(`CREATE DATABASE postdb`, function (error,results) {
+    connection.query(`CREATE DATABASE IF NOT EXISTS postdb`, function (error,results) {
         if (error) console.log(error);
     });
 
@@ -31,7 +31,7 @@ app.get('/init', (req, res) => {
         if (error) console.log(error);
     });
 
-    connection.query(`CREATE TABLE posts 
+    connection.query(`CREATE TABLE IF NOT EXISTS posts 
     ( id int unsigned NOT NULL auto_increment,
     topic varchar(100) NOT NULL,
     data varchar(100) NOT NULL,
